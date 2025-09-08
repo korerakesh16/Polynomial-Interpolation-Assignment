@@ -64,3 +64,10 @@ value: root value in that base
 Java 21
 org.json library for JSON parsing
 Lagrange interpolation for polynomial constant calculation
+
+### Output
+<img width="1011" height="103" alt="image" src="https://github.com/user-attachments/assets/6f850b69-a911-458c-973b-2c4418778020" />
+
+<img width="988" height="107" alt="image" src="https://github.com/user-attachments/assets/8a04daf1-65f8-44eb-9755-93e43a3cace1" />
+
+
