@@ -5,14 +5,10 @@ import java.nio.file.Paths;
 import java.util.*;
 
 class Fraction {
-    BigInteger num;
-    BigInteger den;
+    BigInteger num, den;
 
     public Fraction(BigInteger num, BigInteger den) {
-        if (den.equals(BigInteger.ZERO)) {
-            throw new ArithmeticException("Denominator cannot be zero");
-        }
-        // Normalize: keep denominator positive
+        if (den.equals(BigInteger.ZERO)) throw new ArithmeticException("Denominator cannot be zero");
         if (den.compareTo(BigInteger.ZERO) < 0) {
             num = num.negate();
             den = den.negate();
@@ -35,31 +31,38 @@ class Fraction {
 
 public class PolynomialConstant {
     public static void main(String[] args) throws Exception {
-        String content = new String(Files.readAllBytes(Paths.get("input.json")));
+        if (args.length == 0) {
+            System.out.println("Usage: java -cp .;json-20240303.jar PolynomialConstant <inputfile.json>");
+            return;
+        }
+
+        String fileName = args[0];
+        String content = new String(Files.readAllBytes(Paths.get(fileName)));
         JSONObject json = new JSONObject(content);
 
-        JSONObject keys = json.getJSONObject("keys");
-        int n = keys.getInt("n");
-        int k = keys.getInt("k");
+        JSONObject keysObj = json.getJSONObject("keys");
+        int k = keysObj.getInt("k");
 
+        // Collect the roots in insertion order (as per JSON)
         List<BigInteger> xVals = new ArrayList<>();
         List<BigInteger> yVals = new ArrayList<>();
 
-        int count = 0;
         for (String key : json.keySet()) {
             if (key.equals("keys")) continue;
-            if (count == k) break;
-            JSONObject obj = json.getJSONObject(key);
-            int base = Integer.parseInt(obj.getString("base"));
-            String val = obj.getString("value");
+            if (xVals.size() == k) break;  // Only take first k roots
 
-            BigInteger decimalValue = new BigInteger(val, base);
-            xVals.add(new BigInteger(key));
-            yVals.add(decimalValue);
+            JSONObject rootObj = json.getJSONObject(key);
+            int base = Integer.parseInt(rootObj.getString("base"));
+            String val = rootObj.getString("value");
 
-            count++;
+            BigInteger x = new BigInteger(key);  // Use the key as x
+            BigInteger y = new BigInteger(val, base);
+
+            xVals.add(x);
+            yVals.add(y);
         }
 
+        // Compute constant term using Lagrange interpolation
         Fraction constant = new Fraction(BigInteger.ZERO, BigInteger.ONE);
 
         for (int i = 0; i < k; i++) {
