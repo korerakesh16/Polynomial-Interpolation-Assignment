@@ -6,12 +6,12 @@ It reads polynomial roots from JSON input, performs **Lagrange interpolation**, 
 ---
 
 ## 📂 Project Structure
-Hashira/
-│── PolynomialConstant.java # Main Java program
-│── input1.json # Sample test case 1
-│── input2.json # Sample test case 2
-│── json-20240303.jar # JSON parsing library
-│── README.md # Documentation
+Hashira/<br>
+│── PolynomialConstant.java # Main Java program<br>
+│── input1.json # Sample test case 1,br>
+│── input2.json # Sample test case 2,br>
+│── json-20240303.jar # JSON parsing library<br>
+│── README.md # Documentation<br>
 
 ## 🚀 How to Run
 
