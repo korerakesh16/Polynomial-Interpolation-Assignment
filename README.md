@@ -8,8 +8,8 @@ It reads polynomial roots from JSON input, performs **Lagrange interpolation**, 
 ## 📂 Project Structure
 Hashira/<br>
 │── PolynomialConstant.java # Main Java program<br>
-│── input1.json # Sample test case 1,br>
-│── input2.json # Sample test case 2,br>
+│── input1.json # Sample test case 1,<br>
+│── input2.json # Sample test case 2,<br>
 │── json-20240303.jar # JSON parsing library<br>
 │── README.md # Documentation<br>
 
