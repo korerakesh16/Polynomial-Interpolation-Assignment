@@ -21,7 +21,7 @@ javac -cp ".;json-20240303.jar" PolynomialConstant.java
 ### Run
 
 Pass the input JSON file as an argument:
-java -cp ".;json-20240303.jar" PolynomialConstant input1.json
+java -cp ".;json-20240303.jar" PolynomialConstant input.json
 
 ### For second test case:
 java -cp ".;json-20240303.jar" PolynomialConstant input2.json
